@@ -110,7 +110,7 @@ bot.on('login',function(){
 });
 
 bot.on('time', function(time) {
-	if(config.oto-gece-gunduz == "true"){
+	if(config.gecegunduz == "true"){
 	if(bot.time.timeOfDay >= 13000){
 	bot.chat('/time set day')
         bot.chat('otomatik gündüz yaptım!')
