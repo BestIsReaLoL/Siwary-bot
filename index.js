@@ -104,14 +104,16 @@ bot.loadPlugin(cmd)
 
 bot.on('login',function(){
 	console.log("Logged In")
+	bot.chat(`/login ${config.sifre}`)
 	bot.chat("SiwaryNW");
-    bot.chat(`/login ${config.sifre}`)
+    
 });
 
 bot.on('time', function(time) {
 	if(config.oto-gece-gunduz == "true"){
 	if(bot.time.timeOfDay >= 13000){
 	bot.chat('/time set day')
+        bot.chat('otomatik gündüz yaptım!')
 	}}
     if (connected <1) {
         return;
