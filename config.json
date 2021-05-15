@@ -2,11 +2,19 @@
 
     "token": "TOKEN",
 
-    "ipAddress": "mc.hypixel.net",
-    "port": "port",
-    "playersChannel": "9802980280282",
-    "statusChannel": "3809390383",
+    "ipAddress": "play.siwary.cf",
+    "port": "25565",
+    "playersChannel": "837990145298661404",
+    "statusChannel": "841851020271419422",
     "updateInterval": "1min",
 
-    "prefix": "sw!"
+    "prefix": "sw!",
+
+
+
+
+    "botip":"play.siwary.cf",
+	"botport": "25565",
+	"oto-gece-gunduz":"false",
+    "sifre": "authme varsa ekleyin yoksa boş bırakım"
 }
