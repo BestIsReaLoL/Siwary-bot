@@ -91,7 +91,7 @@ var moveinterval = 1;
 var maxrandom = 3; 
 var bot = mineflayer.createBot({
   host: config.botip,
-  username: config.name
+  username: config.botisim
 });
 function getRandomArbitrary(min, max) {
        return Math.random() * (max - min) + min;
