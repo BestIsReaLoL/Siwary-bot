@@ -1,6 +1,8 @@
 const ms = require('ms')
 const fetch = require('node-fetch')
 const Discord = require('discord.js')
+const mineflayer = require('mineflayer')
+const cmd = require('mineflayer-cmd').plugin
 const client = new Discord.Client()
 
 const config = require('./config.json')
@@ -54,7 +56,7 @@ client.on('message', async (message) => {
     }
 
     if(message.content === `${config.prefix}durum`){
-        const sentMessage = await message.channel.send("İstatistikler toplanıyor lütfen bekleyi...")
+        const sentMessage = await message.channel.send("İstatistikler toplanıyor lütfen bekleyin...")
 
       
         const res = await fetch(`https://mcapi.us/server/status?ip=${config.ipAddress}${config.port ? `&port=${config.port}` : ''}`)
@@ -62,11 +64,11 @@ client.on('message', async (message) => {
       
         const body = await res.json()
 
-        
+       // const attachment = new Discord.MessageAttachment(Buffer.from(body.favicon.substr('data:image/png;base64,'.length), 'base64'), "icon.png")
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(config.ipAddress)
-           
+         //   .attachFiles(attachment)
             .setThumbnail("attachment://icon.png")
             .addField("Versiyon", body.server.name)
             .addField("Aktif", `${body.players.now} kişi`)
@@ -79,5 +81,71 @@ client.on('message', async (message) => {
     }
 
 })
+var lasttime = -1;
+var moving = 0;
+var connected = 0;
+var actions = [ 'forward', 'back', 'left', 'right']
+var lastaction;
+var pi = 3.14159;
+var moveinterval = 1;
+var maxrandom = 3; 
+var bot = mineflayer.createBot({
+  host: config.botip,
+  username: config.name
+});
+function getRandomArbitrary(min, max) {
+       return Math.random() * (max - min) + min;
+
+}
+
+bot.loadPlugin(cmd)
+
+
+
+bot.on('login',function(){
+	console.log("Logged In")
+	bot.chat("SiwaryNW");
+    bot.chat(`/login ${config.sifre}`)
+});
+
+bot.on('time', function(time) {
+	if(config.oto-gece-gunduz == "true"){
+	if(bot.time.timeOfDay >= 13000){
+	bot.chat('/time set day')
+	}}
+    if (connected <1) {
+        return;
+    }
+    if (lasttime<0) {
+        lasttime = bot.time.age;
+    } else {
+        var randomadd = Math.random() * maxrandom * 20;
+        var interval = moveinterval*20 + randomadd;
+        if (bot.time.age - lasttime > interval) {
+            if (moving == 1) {
+                bot.setControlState(lastaction,false);
+                moving = 0;
+                lasttime = bot.time.age;
+            } else {
+                var yaw = Math.random()*pi - (0.5*pi);
+                var pitch = Math.random()*pi - (0.5*pi);
+                bot.look(yaw,pitch,false);
+                lastaction = actions[Math.floor(Math.random() * actions.length)];
+                bot.setControlState(lastaction,true);
+                moving = 1;
+                lasttime = bot.time.age;
+                bot.activateItem();
+            }
+        }
+    }
+});
+
+bot.on('spawn',function() {
+    connected=1;
+});
+
+bot.on('death',function() {
+    bot.emit("respawn")
+});
 
 client.login(config.token)
