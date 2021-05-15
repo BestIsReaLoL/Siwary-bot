@@ -10,9 +10,11 @@
     "mc"
   ],
   "author": "Erdem Görkem Şener",
-  "license": "GNU",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^12.5.3",
+    "mineflayer": "^3.6.0",
+    "mineflayer-cmd": "^1.1.3",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.1"
   }
