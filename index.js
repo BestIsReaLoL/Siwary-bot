@@ -70,7 +70,7 @@ client.on('message', async (message) => {
             .setAuthor(config.ipAddress)
          //   .attachFiles(attachment)
             .setThumbnail("attachment://icon.png")
-            .addField("Versiyon", body.server.name)
+           // .addField("Versiyon", body.server.name)
             .addField("Aktif", `${body.players.now} kişi`)
             .addField("Maximum", `${body.players.max} kişi`)
             .addField("Durum", (body.online ? "açık :green_circle: " : "kapalı :red_circle: "))
