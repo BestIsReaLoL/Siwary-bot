@@ -50,13 +50,13 @@ client.on('message', async (message) => {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
             return message.reply('Bu komutu sunucu moderatörleri kullanabilir')
         }
-        const sentMessage = await message.reply("Kanallar güncelleniyor lütfen bekleyiniz...")
+        const kanalguncelleme = await message.reply("Kanallar güncelleniyor lütfen bekleyiniz...")
         await updateChannel()
-        sentMessage.edit("Kanallar başarıyla güncellendi")
+        kanalguncelleme.edit("Kanallar başarıyla güncellendi")
     }
 
     if(message.content === `${config.prefix}durum`){
-        const sentMessage = await message.channel.send("İstatistikler toplanıyor lütfen bekleyin...")
+        const istatistikmsg = await message.channel.send("İstatistikler toplanıyor lütfen bekleyin...")
 
       
         const res = await fetch(`https://mcapi.us/server/status?ip=${config.ipAddress}${config.port ? `&port=${config.port}` : ''}`)
@@ -77,7 +77,7 @@ client.on('message', async (message) => {
             .setColor("#FF0000")
            
         
-        sentMessage.edit(`:chart_with_upwards_trend: İşte **${config.ipAddress}** istatistikleri:`, { embed })
+        istatistikmsg.edit(`:chart_with_upwards_trend: İşte **${config.ipAddress}** istatistikleri:`, { embed })
     }
 
 })
@@ -91,7 +91,6 @@ var moveinterval = 1;
 var maxrandom = 3; 
 var bot = mineflayer.createBot({
   host: config.botip,
-  port: config.port,
   username: config.name
 });
 function getRandomArbitrary(min, max) {
