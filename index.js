@@ -62,11 +62,11 @@ client.on('message', async (message) => {
       
         const body = await res.json()
 
-        const attachment = new Discord.MessageAttachment(Buffer.from(body.favicon.substr('data:image/png;base64,'.length), 'base64'), "icon.png")
+        
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(config.ipAddress)
-            .attachFiles(attachment)
+           
             .setThumbnail("attachment://icon.png")
             .addField("Versiyon", body.server.name)
             .addField("Aktif", `${body.players.now} kişi`)
