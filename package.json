@@ -10,7 +10,7 @@
     "mc"
   ],
   "author": "Erdem Görkem Şener",
-  "license": "MIT",
+  "license": "GNU",
   "dependencies": {
     "discord.js": "^12.5.3",
     "mineflayer": "^3.6.0",
